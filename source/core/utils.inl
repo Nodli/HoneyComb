@@ -21,13 +21,12 @@ constexpr bool is_power_of_two(T number){
     return number && !(number & (number - 1));
 }
 
-// @BENCHMARK : Find which implementation is faster
 template<typename T>
 constexpr T modulo_two_pi(T number){
 
-    constexpr float two_pi = 2 * M_PI;
-
     constexpr bool use_branching_implementation = false;
+
+    constexpr float two_pi = 2 * M_PI;
     if(use_branching_implementation){
 
         if(number > two_pi){
@@ -47,8 +46,9 @@ constexpr T modulo_two_pi(T number){
 
 template<typename T>
 void put_bytes(std::ostream& stream, const T val){
-    //const char* const val_bytes = (const char*)(&T);
-    //stream.write(val_bytes, sizeof(T));
+    const char* const val_bytes = (const char*)(&T);
+
+    stream.write(val_bytes, sizeof(T));
 }
 
 template<typename T>
