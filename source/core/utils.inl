@@ -47,7 +47,6 @@ constexpr T modulo_two_pi(T number){
 template<typename T>
 void put_bytes(std::ostream& stream, const T val){
     const char* const val_bytes = (const char*)(&T);
-
     stream.write(val_bytes, sizeof(T));
 }
 
