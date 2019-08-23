@@ -8,15 +8,14 @@ struct TextureRenderer{
 
     enum RenderMode {R = 0, RG = 1, RGB = 2, RGBA = 3};
 
-    TextureRenderer(RenderMode initial_mode = RGB);
+    TextureRenderer(RenderMode mode);
+    TextureRenderer(const char* const fragment_code);
     ~TextureRenderer();
 
-    void render(const OpenGLWindow& window, const ogl::Texture& texture, RenderMode mode);
-
-    RenderMode current_render_mode;
+    void render(const OpenGLWindow& window, const ogl::Texture& texture);
 
     ogl::Shader vertex;
-    ogl::Shader fragment[4];
+    ogl::Shader fragment;
     ogl::Program program;
 
     ogl::VertexArray vertex_array_empty;

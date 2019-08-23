@@ -98,9 +98,9 @@ int main(){
         // ---- Render Simulation ---- //
 
         if(show_source_sink_texture){
-            renderer.render(window, simulation.texture_source_sink, TextureRenderer::R);
+            renderer.render(window, simulation.texture_source_sink);
         }else{
-            renderer.render(window, simulation.texture_state[(int)simulation.current_state], TextureRenderer::R);
+            renderer.render(window, simulation.texture_state[(int)simulation.current_state]);
         }
 
         // -------- End of Frame -------- //

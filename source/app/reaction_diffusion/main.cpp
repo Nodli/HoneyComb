@@ -109,7 +109,7 @@ int main(){
 
         // ---- Render Simulation ---- //
 
-        renderer.render(window, simulation.texture_state[(int)simulation.current_state], TextureRenderer::RG);
+        renderer.render(window, simulation.texture_state[(int)simulation.current_state]);
 
         // -------- End of Frame -------- //
 

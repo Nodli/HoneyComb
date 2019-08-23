@@ -96,7 +96,7 @@ int main(){
 
         // ---- Render ---- //
 
-        renderer.render(window, compute_texture, TextureRenderer::RGB);
+        renderer.render(window, compute_texture);
 
         // -------- End of Frame -------- //
 
