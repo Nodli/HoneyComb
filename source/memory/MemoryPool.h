@@ -15,13 +15,14 @@ struct MemoryPool{
 
     // ---- Allocation ---- //
 
-    void allocate(int number_of_blocks);
+    void allocate(const size_t blocks);
     void deallocate();
+    void reset();
 
     // ---- Block get / give ---- //
 
     // Takes a block from the pool and calls the constructor of T inside it using a placement new
-    // When T cannot be aligned inside a block the allocation returns nullptr even if there are blocks available
+    // Returns nullptr when there are no blocks available
     // ex:
     // A{short, short, short}   ; sizeof(A) = 6 and alignment on a multiple of 2
     // B{int}                   ; sizeof(B) = 4 and alignment on a multiple of 4
@@ -44,8 +45,10 @@ struct MemoryPool{
     };
 
     void* memory = nullptr;
+    size_t memory_blocks = 0;
     MemoryBlock* current_block = nullptr;
-    int free_blocks = 0;
 };
+
+#include "MemoryPool.inl"
 
 #endif

@@ -68,7 +68,7 @@ int main(){
 
         if(glfwGetMouseButton(window.window, GLFW_MOUSE_BUTTON_LEFT)){
             float pos_x, pos_y;
-            cursor_coordinates(window, pos_x, pos_y);
+            window.cursor_screen_coordinates(pos_x, pos_y);
 
             simulation.interaction(pos_x, pos_y, interaction_radius, interaction_type);
         }

@@ -3,10 +3,14 @@
 
 struct LinearAllocator{
 
+    // ---- Constructor ---- //
+
     LinearAllocator();
     ~LinearAllocator();
 
-    void allocate(size_t bytes);
+    // ---- Allocation ---- //
+
+    void allocate(const size_t bytes);
     void deallocate();
     void reset();
 

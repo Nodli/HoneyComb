@@ -3,10 +3,6 @@
 
 #include <cmath>
 
-#if SHOW_CONCATENATE_INTERNAL_PATH
-#include "print.h"
-#endif
-
 template<typename T>
 constexpr T sign(const T number){
 
@@ -62,9 +58,6 @@ T get_bytes(std::istream& stream){
 
 template<typename T, typename ... otherT>
 std::string concatenate(const T& value, const otherT&... otherValue){
-#if SHOW_CONCATENATE_INTERNAL_PATH
-    print("concatenate(const T&, const otherT&)");
-#endif
     std::string output;
     concatenate_step(output, value);
     concatenate_step(output, otherValue...);
@@ -74,9 +67,6 @@ std::string concatenate(const T& value, const otherT&... otherValue){
 
 template<typename T, typename ... otherT>
 std::string concatenate(const char* ptr, const otherT&... otherValue){
-#if SHOW_CONCATENATE_INTERNAL_PATH
-    print("concatenate(const char*, const otherT&)");
-#endif
     std::string output;
     concatenate_step(output, ptr);
     concatenate_step(output, otherValue...);
@@ -86,35 +76,18 @@ std::string concatenate(const char* ptr, const otherT&... otherValue){
 
 template<typename T, typename ... otherT>
 void concatenate_step(std::string& output, const T& value, const otherT&... otherValue){
-#if SHOW_CONCATENATE_INTERNAL_PATH
-    print("concatenate_step(string&, const T&, const otherT&)");
-#endif
-
-#if true
     output += std::to_string(value);
-#else
-    std::string value_string = std::to_string(value);
-    output.reserve(output.size() + value_string.size());
-    output += value_string;
-#endif
-
     concatenate_step(output, otherValue...);
 }
 
 template<typename ... otherT>
 void concatenate_step(std::string& output, const char* ptr, const otherT&... otherValue){
-#if SHOW_CONCATENATE_INTERNAL_PATH
-    print("concatenate_step(string&, const char*, const otherT&)");
-#endif
     output += ptr;
     concatenate_step(output, otherValue...);
 }
 
 template<typename ... otherT>
 void concatenate_step(std::string& output, const std::string& str, const otherT&... otherValue){
-#if SHOW_CONCATENATE_INTERNAL_PATH
-    print("concatenate_step(string&, const string&, const otherT&)");
-#endif
     output.reserve(output.size() + str.size());
     output += str;
     concatenate_step(output, otherValue...);
@@ -122,17 +95,11 @@ void concatenate_step(std::string& output, const std::string& str, const otherT&
 
 template<typename ... otherT>
 void concatenate_step(std::string& output, const char c, const otherT&... otherValue){
-#if SHOW_CONCATENATE_INTERNAL_PATH
-    print("concatenate_step(string&, const char, const otherT&)");
-#endif
     output += c;
     concatenate_step(output, otherValue...);
 }
 
 inline void concatenate_step(const std::string& output){
-#if SHOW_CONCATENATE_INTERNAL_PATH
-    print("concatenate_step(const string&)");
-#endif
 }
 
 #endif

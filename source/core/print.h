@@ -1,8 +1,6 @@
 #ifndef H_PRINT
 #define H_PRINT
 
-#define SHOW_PRINT_INTERNAL_PATH false
-
 // default entry point
 template<typename T, typename ... otherT>
 void print(const T& value, const otherT&... otherValue);

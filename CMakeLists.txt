@@ -19,8 +19,8 @@ add_subdirectory("externals/glfw" glfw-build)
 set(GLM_TEST_ENABLE OFF CACHE BOOL "Disable GLM tests")
 add_subdirectory("externals/glm" glm-build)
 
-# stb - image library
-include_directories("externals/stb")
+# single header libraries
+include_directories("externals/single_header")
 
 # core files
 include_directories("source/core")
@@ -85,3 +85,17 @@ add_executable(Particles.exe
         ${STORAGE_SOURCES})
 target_include_directories(Particles.exe PUBLIC "source/app/particles")
 target_link_libraries(Particles.exe glfw glm)
+
+# Test
+file(GLOB TEST_SOURCES "source/app/test/*.cpp")
+add_executable(Test.exe
+        ${TEST_SOURCES}
+        ${GL3W_SOURCES}
+        ${CORE_SOURCES}
+        ${GRAPHICS_SOURCES}
+        ${MEMORY_SOURCES}
+        ${STORAGE_SOURCES})
+target_include_directories(Test.exe PUBLIC "source/app/test")
+target_link_libraries(Test.exe glfw glm)
+
+

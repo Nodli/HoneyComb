@@ -6,12 +6,6 @@
 
 #include <cmath>
 
-Orbiter::Orbiter(){
-}
-
-Orbiter::~Orbiter(){
-}
-
 void Orbiter::setPolarAngle(const float angle_in_degree){
     camera_polar_angle = angle_in_degree * M_PI / 180 + M_PI / 2;
 }

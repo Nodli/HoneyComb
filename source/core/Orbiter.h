@@ -7,11 +7,6 @@
 
 struct Orbiter{
 
-    // ---- constructor ---- //
-
-	Orbiter();
-	~Orbiter();
-
     // ---- internal state modification / query ---- //
 
     // Angle in degree between axis Y and plane XZ ie latitude
@@ -37,7 +32,6 @@ struct Orbiter{
 	glm::vec3 target_position = {0.f, 0.f, 0.f};
 	float camera_radius = 0.f;
 
-    private:
     float camera_polar_angle = 0.f; // in radians between axis Y to plane XZ
     float camera_azimuthal_angle = 0.f; // in radians between axis Z plane XY
 };

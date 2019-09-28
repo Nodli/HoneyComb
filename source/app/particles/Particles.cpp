@@ -217,8 +217,8 @@ Particles::~Particles(){
 }
 
 void Particles::start(){
-    timer.set();
-    previous_step_time = timer.seconds();
+    timer.start();
+    previous_step_time = timer.get<float, Timer::seconds>();
 
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, position.handle);
 
@@ -239,7 +239,7 @@ void Particles::start(){
 
 void Particles::step(){
 
-    float current_time = timer.seconds();
+    float current_time = timer.get<float, Timer::seconds>();
 
     glUseProgram(compute_step_program.handle);
 

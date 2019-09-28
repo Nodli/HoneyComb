@@ -2,7 +2,7 @@
 #define H_OPENGLWINDOW
 
 // gl3w is not requiered in this file but it should always be included before GLFW
-// and other files may include gl3w after gl_window.h
+// and other files may include gl3w after OpenGLWindow.h
 #include "GL/gl3w.h"
 #include "GLFW/glfw3.h"
 #include "glm/vec2.hpp"
@@ -17,6 +17,7 @@ struct OpenGLWindow{
 	void close();
 
     void synchronize();
+    void cursor_screen_coordinates(float& coord_x, float& coord_y);
 
     // ---- State Storage ---- //
 
@@ -25,8 +26,5 @@ struct OpenGLWindow{
     bool vertical_synchronization = true;
 	GLFWwindow* window = nullptr;
 };
-
-// Returns the coordinates of the mouse cursor in OpenGL coordinates
-void cursor_coordinates(const OpenGLWindow& window, float& coord_x, float& coord_y);
 
 #endif

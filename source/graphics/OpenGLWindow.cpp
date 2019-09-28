@@ -70,16 +70,16 @@ void OpenGLWindow::synchronize(){
     }
 }
 
-void cursor_coordinates(const OpenGLWindow& window, float& coord_x, float& coord_y){
+void OpenGLWindow::cursor_screen_coordinates(float& coord_x, float& coord_y){
 
     // Coordinates in pixels inside the window with origin at top left
     double mouse_x;
     double mouse_y;
-    glfwGetCursorPos(window.window, &mouse_x, &mouse_y);
+    glfwGetCursorPos(window, &mouse_x, &mouse_y);
 
     int window_width;
     int window_height;
-    glfwGetWindowSize(window.window, &window_width, &window_height);
+    glfwGetWindowSize(window, &window_width, &window_height);
 
     coord_x = (mouse_x / window_width) * 2.f - 1.f;
     coord_y = (1.f - mouse_y / window_height) * 2.f - 1.f;

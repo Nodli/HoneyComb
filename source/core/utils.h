@@ -43,8 +43,6 @@ T get_bytes(std::istream& stream);
 
 // ---- Concatenation to string ---- //
 
-#define SHOW_CONCATENATE_INTERNAL_PATH false
-
 // default entry point
 template<typename T, typename ... otherT>
 std::string concatenate(const T& value, const otherT&... otherValue);
@@ -69,6 +67,15 @@ void concatenate_step(std::string& string, const char c, const otherT&... otherV
 
 // base case
 inline void concatenate_step(const std::string& output);
+
+// ---- Colormaps ---- //
+
+// Polynomials fitted to matplotlib colormaps
+// https://www.shadertoy.com/view/WlfXRN
+void viridis(const float value, float& r, float& g, float& b);
+void plasma(const float value, float& r, float& g, float& b);
+void magma(const float value, float& r, float& g, float& b);
+void inferno(const float value, float& r, float& g, float& b);
 
 #include "utils.inl"
 

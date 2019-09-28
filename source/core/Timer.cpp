@@ -1,71 +1,21 @@
 #include "Timer.h"
 
-void Timer::set(){
+void Timer::start(){
     reference = clock.now();
 }
 
-float Timer::nanoseconds(){
-
+void Timer::pause(){
     using duration_type = std::chrono::duration<float, std::nano>;
-    static_assert(std::chrono::treat_as_floating_point<duration_type::rep>::value);
+    duration_type elapsed_since_start = clock.now() - reference;
 
-    std::chrono::high_resolution_clock::time_point now = clock.now();
-    duration_type elapsed = now - reference;
-
-    return elapsed.count();
+    reference = std::chrono::high_resolution_clock::time_point()
+        + std::chrono::duration_cast<std::chrono::high_resolution_clock::duration>(elapsed_since_start);
 }
 
-float Timer::microseconds(){
+void Timer::resume(){
+    using duration_type = std::chrono::duration<float, std::nano>;
+    duration_type elapsed_since_pause = clock.now() - reference;
 
-    using duration_type = std::chrono::duration<float, std::micro>;
-    static_assert(std::chrono::treat_as_floating_point<duration_type::rep>::value);
-
-    std::chrono::high_resolution_clock::time_point now = clock.now();
-    duration_type elapsed = now - reference;
-
-    return elapsed.count();
-}
-
-float Timer::milliseconds(){
-
-    using duration_type = std::chrono::duration<float, std::milli>;
-    static_assert(std::chrono::treat_as_floating_point<duration_type::rep>::value);
-
-    std::chrono::high_resolution_clock::time_point now = clock.now();
-    duration_type elapsed = now - reference;
-
-    return elapsed.count();
-}
-
-float Timer::seconds(){
-
-    using duration_type = std::chrono::duration<float>;
-    static_assert(std::chrono::treat_as_floating_point<duration_type::rep>::value);
-
-    std::chrono::high_resolution_clock::time_point now = clock.now();
-    duration_type elapsed = now - reference;
-
-    return elapsed.count();
-}
-
-float Timer::minutes(){
-
-    using duration_type = std::chrono::duration<float, std::ratio<60>>;
-    static_assert(std::chrono::treat_as_floating_point<duration_type::rep>::value);
-
-    std::chrono::high_resolution_clock::time_point now = clock.now();
-    duration_type elapsed = now - reference;
-
-    return elapsed.count();
-}
-
-float Timer::hours(){
-
-    using duration_type = std::chrono::duration<float, std::ratio<3600>>;
-    static_assert(std::chrono::treat_as_floating_point<duration_type::rep>::value);
-
-    std::chrono::high_resolution_clock::time_point now = clock.now();
-    duration_type elapsed = now - reference;
-
-    return elapsed.count();
+    reference = std::chrono::high_resolution_clock::time_point()
+        + std::chrono::duration_cast<std::chrono::high_resolution_clock::duration>(elapsed_since_pause);
 }
