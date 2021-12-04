@@ -4,6 +4,9 @@
 #include <string>
 #include <iostream>
 
+#define M_PI 3.14
+#define NO_MIN
+
 // ---- C Random numbers ---- //
 
 float rand_normalized();
@@ -14,7 +17,7 @@ float rand_normalized();
 // http://www.reedbeta.com/blog/quick-and-easy-gpu-random-numbers-in-d3d11/
 constexpr int hash32shift(int key);
 constexpr int hash32shiftmult(int key);
-constexpr long hash64shift(long key);
+constexpr long long hash64shift(long long key);
 
 // ---- Math utilities ---- //
 

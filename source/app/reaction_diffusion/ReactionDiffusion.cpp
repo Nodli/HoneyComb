@@ -1,3 +1,5 @@
+#define NOMINMAX
+
 #include "ReactionDiffusion.h"
 
 #include <cmath>
@@ -169,7 +171,7 @@ void ReactionDiffusion::start(const int simulation_width, const int simulation_h
 
     // ---- Initializing state textures and framebuffer ---- //
 
-    float initial_data[width * height * 2];
+    float* initial_data = (float*)malloc(width * height * 2 * sizeof(float));
     for(int idata = 0; idata != width * height; ++idata){
         initial_data[2 * idata] = default_value_u;
         initial_data[2 * idata + 1] = default_value_v;
@@ -191,6 +193,8 @@ void ReactionDiffusion::start(const int simulation_width, const int simulation_h
 
     glBindTexture(GL_TEXTURE_2D, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    free(initial_data);
 }
 
 void ReactionDiffusion::reset(){

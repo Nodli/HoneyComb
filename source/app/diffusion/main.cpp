@@ -1,3 +1,5 @@
+#define NOMINMAX 
+
 #include "GL.h"
 #include "OpenGLWindow.h"
 

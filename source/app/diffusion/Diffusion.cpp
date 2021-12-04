@@ -1,7 +1,12 @@
+#define NOMINMAX
+
 #include "Diffusion.h"
 
 #include <cmath>
 #include "print.h"
+
+#include <cstdlib>
+
 
 Diffusion::Diffusion(){
 
@@ -176,7 +181,7 @@ void Diffusion::start(const int simulation_width, const int simulation_height){
     // ---- Initializing state textures and framebuffer ---- //
 
     // TODO (Nodli) : VLAs are not supported on windows, instead use malloc / new or glMapBufferRange to let the driver do the allocation
-    float initial_data[width * height];
+    float* initial_data = (float*)malloc(width * height * sizeof(float));
     for(int idata = 0; idata != width * height; ++idata){
         initial_data[idata] = min_initial_max[CLEAR];
     }
@@ -206,6 +211,8 @@ void Diffusion::start(const int simulation_width, const int simulation_height){
 
     glBindTexture(GL_TEXTURE_2D, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    free(initial_data);
 }
 
 void Diffusion::reset(){

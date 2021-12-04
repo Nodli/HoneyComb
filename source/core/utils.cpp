@@ -9,7 +9,7 @@ float rand_normalized(){
 
 constexpr int hash32shift(int key){
 
-    static_assert(sizeof(key) == 4, "hash32shift requieres a 32 bit value"); // 32 bits
+    static_assert(sizeof(key) == 4, "hash32shift requires a 32 bit value"); // 32 bits
 
     key = ~key + (key << 15); // key = (key << 15) - key - 1;
     key = key ^ (key >> 12);
@@ -32,7 +32,7 @@ constexpr int hash32shiftmult(int key){
 	return key;
 }
 
-constexpr long hash64shift(long key){
+constexpr long long hash64shift(long long key){
 
     static_assert(sizeof(key) == 8, "hash64shift requieres a 64 bit value"); // 32 bits
 
